@@ -15,10 +15,6 @@
         <div class="container">
             <nav>
                 <img src="images/logo.png" class="logo">
-            
-                <!-- Menu Icon (☰) - Only for small screens -->
-                <i class="fa-solid fa-bars" id="menu-icon" onclick="openmenu()"></i>
-            
                 <ul id="sidemenu">
                     <li><a href="#header">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -26,13 +22,15 @@
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <!-- Close Icon (✖) inside menu -->
-                    <i class="fa-solid fa-times" id="close-icon" onclick="closemenu()"></i>
+                    <i class="fa-solid fa-times" onclick="closemenu()"></i>
                 </ul>
+                <!-- Menu Icon (☰) - Only for small screens -->   
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
             </nav>
             
               
             <div class="header-text">
-                <p>Software Developer</p>
+                <p>UI/UX Designer</p>
                 <h1>Hi,I'm <span>Shyla</span> <br> Rotich from Kenya</h1>
             </div>
 
@@ -161,16 +159,17 @@
                 <a href="images/Sheila CV .pdf" download class="btn btn2">Download CV</a>
             </div>
             <div class="contact-right">
-                <form>
+                <form name="submit-to-google-sheet">
                     <input type="text" name="Name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <textarea name="Message" rows="6" placeholder="Leave a Comment Here"></textarea>
                     <button type="submit" class="btn btn2">Submit</button>
                 </form>
+                <span id="msg"></span>
             </div>
         </div>
         <div class="copyright">
-            <p>copyright &copy; 2025 Sheila Rotich <i class="fas fa-heart"></i> | Designed & Developed by Sheila <i class="fas fa-heart"></i>| All Rights Reserved</p>
+            <p>Copyright &copy; 2025 Sheila Rotich| Designed & Developed by Sheila <i class="fas fa-heart"></i>| All Rights Reserved</p>
         </div>
     </div>
 </div>
@@ -198,12 +197,28 @@
     function openmenu() {
         sidemenu.style.right = "0";  // Open the menu
     }
-
     function closemenu() {
         sidemenu.style.right = "-200px"; // Close the menu
     }
 </script>
-
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwYoNLuUt1sDu7JH42S7kZ8dYvkn5mGZumbLUBC-ZUu8Pj2gX-YkdNWdyCpwEH9A45m/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML="Message Sent Succesfully"
+            setTimeout(function(){
+                msg.innerHTML=""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 
 </body>
 </html>

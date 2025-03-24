@@ -28,7 +28,7 @@ nav{
     flex-wrap: wrap;
 }
 .logo{
-    width: 140px;
+    width: 150px;
 }
 nav ul li{
     display: inline-block;
@@ -315,56 +315,89 @@ form .btn2{
 .copyright i{
     color: #ff004f;
 }
-/* Hide menu icon on larger screens */
-#menu-icon {
+/* Hide icons on larger screens */
+nav .fa-bars, 
+nav .fa-times {
     display: none;
-    font-size: 30px;
-    color: white; /* Ensures visibility */
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-/* Close icon inside menu */
-#close-icon {
-    display: none;
-    color: white;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
 }
 
 /* Mobile Menu Styles */
 @media only screen and (max-width: 600px) {
-    /* Show menu icon */
-    #menu-icon {
-        display: block;
+    #header {
+        background-image: url(images/phonebackground.png);
     }
 
-    /* Hide normal menu */
+    .header-text {
+        margin-top: 100%;
+        font-size: 16px;
+    }
+    .header-text h1{
+        font-size: 25px;
+    }
+    /* Show menu icon (☰) for mobile */
+    nav .fa-bars {
+        display: block;
+        font-size: 25px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+    }
+
+    /* Mobile sidebar menu */
     nav ul {
-        display: flex;
-        flex-direction: column;
+        background: #ff004f;
         position: fixed;
         top: 0;
-        right: -250px; /* Initially hidden */
+        right: -200px;
         width: 200px;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.9);
         padding-top: 50px;
-        transition: right 0.5s;
+        z-index: 2;
+        transition: right 0.5s ease;
     }
 
     nav ul li {
         display: block;
         margin: 25px;
-        color: white;
     }
 
-    /* Ensure close icon is visible */
-    #close-icon {
+    /* Close icon (✖) inside menu */
+    nav ul .fa-times {
         display: block;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        cursor: pointer;
+        font-size: 25px;
+        color: white;
     }
+    .sub-title{
+        font-size: 40px;
+    }
+    .about-col-1,.about-col-2{
+        flex-basis: 100%;
+    }
+    .about-col-1{
+        margin-bottom: 30px;
+    }
+    .about-col-2{
+        font-size: 14px;
+    }
+    .tab-links{
+        font-size: 16px;
+        margin-right: 20px;
+    }
+    .contact-left,.contact-right{
+        flex-basis: 100%;
+    }
+    .copyright{
+        font-size: 14px;
+    }
+}
+#msg{
+    color:#61b752;
+    margin-top: -40px;
+    display: block;
 }
